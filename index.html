@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahmed & Reem — Wedding Invitation</title>
+    <meta
+      name="description"
+      content="You are cordially invited to celebrate the wedding of Ahmed and Reem. Friday, 17th July 2025 at Royal Wedding Hall, Police Club, 6th of October City."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --burg: #6b0f1a;
+        --burg-deep: #3d0a12;
+        --burg-darkest: #1e050a;
+        --cream: #f5f0e8;
+        --cream-warm: #ede5d5;
+        --gold: #c9a84c;
+        --gold-lt: #e2c878;
+        --gold-dk: #a8873a;
+        --muted: rgba(245, 240, 232, 0.55);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cormorant Garamond", serif;
+        overflow-x: hidden;
+        background: var(--burg-darkest);
+        color: var(--cream);
+      }
+
+      /* ══════════════════════════════════════
+   PARTICLES CANVAS
+══════════════════════════════════════ */
+      #particles {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.35;
+      }
+
+      /* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 56px;
+        transition:
+          background 0.5s,
+          padding 0.4s,
+          box-shadow 0.4s;
+      }
+      nav.scrolled {
+        background: rgba(30, 5, 10, 0.96);
+        backdrop-filter: blur(14px);
+        padding: 12px 56px;
+        box-shadow:
+          0 1px 0 rgba(201, 168, 76, 0.15),
+          0 4px 30px rgba(0, 0, 0, 0.5);
+      }
+      .nav-logo {
+        font-family: "Luxurious Script", cursive;
+        font-size: 28px;
+        color: var(--gold);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: opacity 0.3s;
+      }
+      .nav-logo:hover {
+        opacity: 0.8;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+      }
+      .nav-links a {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-decoration: none;
+        opacity: 0.7;
+        transition:
+          opacity 0.3s,
+          color 0.3s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: var(--cream);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 190;
+        background: rgba(20, 4, 8, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 44px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .mobile-menu.open {
+        display: flex;
+        opacity: 1;
+      }
+      .mobile-menu a {
+        font-family: "Raleway", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .mobile-menu a:hover {
+        color: var(--gold);
+      }
+      .mobile-menu .mob-mono {
+        font-family: "Luxurious Script", cursive;
+        font-size: 52px;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      /* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+      #hero {
+        position: relative;
+        width: 100%;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+      .hero-img-wrap {
+        position: absolute;
+        inset: 0;
+      }
+      .hero-bg-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        display: block;
+      }
+      /* Layered atmospheric overlays */
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(20, 4, 8, 0.15) 0%,
+          rgba(20, 4, 8, 0) 30%,
+          rgba(20, 4, 8, 0) 50%,
+          rgba(20, 4, 8, 0.7) 80%,
+          rgba(20, 4, 8, 0.95) 100%
+        );
+      }
+      .hero-vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 70% at 50% 40%,
+          transparent 40%,
+          rgba(10, 2, 4, 0.5) 100%
+        );
+      }
+
+      /* Gold dust shimmer line */
+      .hero-shimmer {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          105deg,
+          transparent 40%,
+          rgba(201, 168, 76, 0.04) 50%,
+          transparent 60%
+        );
+        animation: shimmerSlide 8s 1.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes shimmerSlide {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 200%;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 24px 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Date badge */
+      .hero-date-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 1s 0.2s ease both;
+      }
+      .hero-date-badge::before,
+      .hero-date-badge::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.6;
+      }
+
+      .hero-names {
+        font-family: "Luxurious Script", cursive;
+        font-size: clamp(60px, 12vw, 110px);
+        color: var(--cream);
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        text-shadow:
+          0 2px 40px rgba(0, 0, 0, 0.6),
+          0 0 80px rgba(201, 168, 76, 0.15);
+        opacity: 0;
+        animation: fadeUp 1.2s 0.4s ease both;
+      }
+      .hero-ampersand {
+        display: block;
+        font-size: clamp(36px, 6vw, 60px);
+        color: var(--gold);
+        margin: -8px 0;
+        opacity: 0;
+        animation: fadeUp 1.2s 0.55s ease both;
+      }
+
+      .hero-gold-line {
+        width: 180px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        margin: 20px auto;
+        opacity: 0;
+        animation: fadeIn 1s 0.9s ease both;
+      }
+      .hero-sub {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--muted);
+        opacity: 0;
+        animation: fadeUp 1s 1s ease both;
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-family: "Raleway", sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.4);
+        text-decoration: none;
+        z-index: 3;
+        animation: fadeIn 1s 1.8s ease both;
+      }
+      .scroll-arrow {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+        animation: scrollPulse 2s ease-in-out infinite;
+      }
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scaleY(1.15);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   DIVIDER ORNAMENT
+══════════════════════════════════════ */
+      .ornament-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 48px 20px;
+        background: var(--burg-darkest);
+      }
+      .ornament-divider::before,
+      .ornament-divider::after {
+        content: "";
+        flex: 1;
+        max-width: 200px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(201, 168, 76, 0.4)
+        );
+      }
+      .ornament-divider::after {
+        background: linear-gradient(
+          90deg,
+          rgba(201, 168, 76, 0.4),
+          transparent
+        );
+      }
+      .ornament-icon {
+        font-family: "Luxurious Script", cursive;
+        font-size: 28px;
+        color: var(--gold);
+        opacity: 0.7;
+      }
+
+      /* ══════════════════════════════════════
+   INVITATION CARD SECTION
+══════════════════════════════════════ */
+      #invitation {
+        background: var(--burg-deep);
+        padding: 0 20px 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Subtle radial glow behind card */
+      #invitation::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(107, 15, 26, 0.4) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .inv-section-label {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 40px;
+        opacity: 0.7;
+      }
+
+      /* Wax seal hanging above card */
+      .wax-seal-wrap {
+        position: relative;
+        z-index: 3;
+        margin-bottom: -44px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .wax-seal {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 38% 35%,
+          #9b2030,
+          #5a0a15,
+          #3a0610
+        );
+        box-shadow:
+          0 6px 24px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.06),
+          inset 0 2px 8px rgba(255, 200, 150, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .wax-seal::before {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .wax-letter {
+        font-family: "Luxurious Script", cursive;
+        font-size: 32px;
+        color: rgba(245, 240, 232, 0.25);
+        line-height: 1;
+      }
+      .wax-ribbon {
+        width: 1px;
+        height: 48px;
+        background: linear-gradient(
+          to bottom,
+          rgba(201, 168, 76, 0.5),
+          transparent
+        );
+      }
+
+      /* Card itself */
+      .inv-card-wrap {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 480px;
+        /* Torn paper top edge illusion via clip-path */
+        filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.7))
+          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+      }
+      .inv-card-img {
+        width: 100%;
+        display: block;
+        border-radius: 2px;
+      }
+
+      /* ══════════════════════════════════════
+   STORY SECTION
+══════════════════════════════════════ */
+      /* ══ STORY SECTION ══ */
+      #story {
+        background: var(--cream);
+        padding: 110px 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Giant watermark */
+      #story::before {
+        content: "A & R";
+        position: absolute;
+        bottom: -80px;
+        right: -40px;
+        font-family: "Luxurious Script", cursive;
+        font-size: 320px;
+        color: rgba(107, 15, 26, 0.035);
+        pointer-events: none;
+        line-height: 1;
+        white-space: nowrap;
+        user-select: none;
+      }
+
+      /* Thin gold top border accent */
+      #story::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(201, 168, 76, 0.35),
+          transparent
+        );
+      }
+
+      .story-inner {
+        max-width: 1060px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Image wrap ── */
+      .story-img-wrap {
+        position: relative;
+        width: 100%;
+        min-height: 460px;
+        border-radius: 2px;
+        overflow: hidden;
+        cursor: default;
+      }
+
+      /* Gold corner accents */
+      .story-img-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        z-index: 3;
+        pointer-events: none;
+        background:
+          linear-gradient(var(--gold), var(--gold)) top left / 22px 1px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) top left / 1px 22px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) top right / 22px 1px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) top right / 1px 22px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) bottom left / 22px 1px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) bottom left / 1px 22px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) bottom right / 22px 1px
+            no-repeat,
+          linear-gradient(var(--gold), var(--gold)) bottom right / 1px 22px
+            no-repeat;
+        opacity: 0.5;
+        transition: opacity 0.4s;
+      }
+      .story-img-wrap:hover::before {
+        opacity: 1;
+      }
+
+      /* Warm radial glow */
+      .story-img-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: radial-gradient(
+          ellipse at 50% 40%,
+          rgba(201, 168, 76, 0.08) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .story-img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        display: block;
+        object-fit: cover;
+        object-position: center 15%;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .story-img-wrap:hover .story-img {
+        transform: scale(1.05);
+      }
+
+      /* ── Text ── */
+      .section-eyebrow {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: var(--gold-dk);
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      .story-text h2 {
+        font-family: "Luxurious Script", cursive;
+        font-size: 66px;
+        color: var(--burg);
+        margin-bottom: 28px;
+        line-height: 1.05;
+        font-weight: normal;
+      }
+
+      .story-text p {
+        font-size: 17px;
+        line-height: 2;
+        color: rgba(60, 10, 20, 0.72);
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 32px;
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--burg);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(107, 15, 26, 0.25);
+        padding-bottom: 5px;
+        transition:
+          gap 0.3s,
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .read-more:hover {
+        gap: 14px;
+        color: var(--gold-dk);
+        border-color: var(--gold-dk);
+      }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        #story {
+          padding: 70px 24px;
+        }
+        #story::before {
+          font-size: 150px;
+          bottom: -20px;
+          right: -10px;
+        }
+        .story-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .story-img-wrap {
+          min-height: 320px;
+        }
+        .story-img {
+          min-height: 320px;
+        }
+        .story-text h2 {
+          font-size: 48px;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   DETAILS SECTION
+══════════════════════════════════════ */
+      #details {
+        background: var(--cream-warm);
+        padding: 90px 60px;
+        border-top: 1px solid rgba(107, 15, 26, 0.1);
+      }
+      .details-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .details-header h2 {
+        font-family: "Luxurious Script", cursive;
+        font-size: 56px;
+        color: var(--burg);
+        font-weight: normal;
+      }
+
+      /* Three cards */
+      .detail-cards {
+        max-width: 860px;
+        margin: 0 auto 56px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+      }
+      .detail-card {
+        padding: 36px 32px;
+        border: 1px solid rgba(107, 15, 26, 0.12);
+        text-align: center;
+        position: relative;
+        background: var(--cream);
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .detail-card:not(:first-child) {
+        border-left: none;
+      }
+      .detail-card:hover {
+        box-shadow: 0 8px 40px rgba(107, 15, 26, 0.12);
+        transform: translateY(-3px);
+        z-index: 1;
+      }
+      .detail-icon {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto 16px;
+        color: var(--gold);
+      }
+      .detail-card h4 {
+        font-family: "Raleway", sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold-dk);
+        margin-bottom: 12px;
+      }
+      .detail-card .value {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        color: var(--burg);
+        font-weight: 600;
+        line-height: 1.5;
+      }
+      .detail-card .sub-value {
+        font-size: 14px;
+        color: rgba(60, 10, 20, 0.55);
+        margin-top: 4px;
+        line-height: 1.6;
+      }
+
+      /* Map + CTA area */
+      .details-bottom {
+        max-width: 860px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .map-frame {
+        width: 100%;
+        aspect-ratio: 4/3;
+        border: none;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        display: block;
+      }
+      .venue-cta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        gap: 20px;
+      }
+      .venue-cta h3 {
+        font-family: "Luxurious Script", cursive;
+        font-size: 38px;
+        color: var(--burg);
+        font-weight: normal;
+      }
+      .venue-cta address {
+        font-style: normal;
+        font-size: 16px;
+        line-height: 1.9;
+        color: rgba(60, 10, 20, 0.7);
+      }
+      .venue-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        background: var(--burg);
+        color: var(--gold);
+        border: 1px solid var(--gold);
+        padding: 18px 36px;
+        text-decoration: none;
+        transition: all 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .venue-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--gold);
+        transform: translateX(-101%);
+        transition: transform 0.35s ease;
+      }
+      .venue-btn:hover::before {
+        transform: translateX(0);
+      }
+      .venue-btn:hover {
+        color: var(--burg-deep);
+      }
+      .venue-btn span,
+      .venue-btn svg {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ══════════════════════════════════════
+   RSVP SECTION
+══════════════════════════════════════ */
+      #rsvp {
+        background: linear-gradient(
+          160deg,
+          var(--burg-deep) 0%,
+          var(--burg) 100%
+        );
+        padding: 100px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Subtle texture */
+      #rsvp::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+
+      .rsvp-inner {
+        max-width: 480px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .rsvp-inner h2 {
+        font-family: "Luxurious Script", cursive;
+        font-size: 62px;
+        color: var(--gold);
+        font-weight: normal;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .gold-line {
+        width: 200px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        margin: 16px auto 20px;
+      }
+      .rsvp-sub {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 48px;
+      }
+      .rsvp-form {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: left;
+      }
+      .form-group label {
+        font-family: "Raleway", sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        color: var(--cream);
+        font-size: 16px;
+        font-family: "Cormorant Garamond", serif;
+        padding: 12px 0;
+        outline: none;
+        transition: border-color 0.3s;
+        resize: none;
+        width: 100%;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-bottom-color: var(--gold);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(245, 240, 232, 0.2);
+        font-style: italic;
+      }
+
+      /* Attendance toggle */
+      .attend-toggle {
+        display: flex;
+        gap: 0;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        overflow: hidden;
+      }
+      .attend-toggle input[type="radio"] {
+        display: none;
+      }
+      .attend-toggle label {
+        flex: 1;
+        text-align: center;
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-bottom: none !important;
+      }
+      .attend-toggle input:checked + label {
+        background: var(--gold);
+        color: var(--burg-deep);
+      }
+
+      .submit-btn {
+        margin-top: 12px;
+        height: 54px;
+        width: 100%;
+        background: var(--gold);
+        border: none;
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--burg-deep);
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--gold-lt);
+        transform: translateX(-101%);
+        transition: transform 0.35s ease;
+      }
+      .submit-btn:hover::before {
+        transform: translateX(0);
+      }
+      .submit-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .submit-btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+      footer {
+        background: var(--burg-darkest);
+        padding: 64px 40px 28px;
+        text-align: center;
+        border-top: 1px solid rgba(201, 168, 76, 0.1);
+      }
+      .footer-mono {
+        font-family: "Luxurious Script", cursive;
+        font-size: 48px;
+        color: var(--gold);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .footer-tagline {
+        font-family: "Raleway", sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      footer address {
+        font-family: "Raleway", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+        font-style: normal;
+        line-height: 2;
+        margin-bottom: 36px;
+      }
+      .footer-divider {
+        width: 240px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(201, 168, 76, 0.25),
+          transparent
+        );
+        margin: 0 auto 24px;
+      }
+      .footer-bottom {
+        font-family: "Raleway", sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        color: rgba(245, 240, 232, 0.2);
+      }
+      .footer-bottom a {
+        color: rgba(201, 168, 76, 0.4);
+        text-decoration: none;
+        margin-right: 20px;
+        transition: color 0.3s;
+      }
+      .footer-bottom a:hover {
+        color: var(--gold);
+      }
+
+      /* ══════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+      .reveal.delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal.delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal.delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ══════════════════════════════════════
+   MOBILE  — everything ≤ 768px
+══════════════════════════════════════ */
+      @media (max-width: 768px) {
+        nav {
+          padding: 14px 20px;
+        }
+        nav.scrolled {
+          padding: 10px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+
+        /* Hero mobile */
+        .hero-bg-img {
+          object-position: 60% center;
+        }
+        .hero-names {
+          font-size: clamp(52px, 15vw, 72px);
+        }
+        .hero-content {
+          padding: 0 20px 100px;
+        }
+        .hero-date-badge::before,
+        .hero-date-badge::after {
+          width: 24px;
+        }
+
+        /* Invitation */
+        #invitation {
+          padding: 0 16px 70px;
+        }
+        .wax-seal {
+          width: 64px;
+          height: 64px;
+        }
+        .wax-letter {
+          font-size: 26px;
+        }
+        .wax-ribbon {
+          height: 36px;
+        }
+        .inv-card-wrap {
+          max-width: 100%;
+        }
+        .inv-section-label {
+          margin-bottom: 24px;
+        }
+
+        /* Story */
+        #story {
+          padding: 70px 24px;
+        }
+        #story::before {
+          font-size: 140px;
+          bottom: -20px;
+          right: -10px;
+        }
+        .story-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .story-img-wrap {
+          max-width: 200px;
+          margin: 0 auto;
+        }
+        .story-text h2 {
+          font-size: 48px;
+        }
+        .story-text p {
+          font-size: 16px;
+        }
+
+        /* Details */
+        #details {
+          padding: 70px 20px;
+        }
+        .details-header h2 {
+          font-size: 44px;
+        }
+        .detail-cards {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .detail-card:not(:first-child) {
+          border-left: 1px solid rgba(107, 15, 26, 0.12);
+          border-top: none;
+        }
+        .details-bottom {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .venue-cta {
+          order: -1;
+        }
+        .venue-btn {
+          width: 100%;
+        }
+        .map-frame {
+          aspect-ratio: 16/9;
+        }
+
+        /* RSVP */
+        #rsvp {
+          padding: 70px 20px;
+        }
+        .rsvp-inner h2 {
+          font-size: 48px;
+        }
+
+        /* Footer */
+        footer {
+          padding: 48px 20px 20px;
+        }
+        .footer-mono {
+          font-size: 38px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particles"></canvas>
+
+    <!-- ═══ NAV ═══ -->
+    <nav id="mainNav">
+      <a href="#hero" class="nav-logo">A &amp; R</a>
+      <ul class="nav-links">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ═══ MOBILE MENU ═══ -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+      <span class="mob-mono">A &amp; R</span>
+      <a href="#story" class="mob-link">Our Story</a>
+      <a href="#details" class="mob-link">Details</a>
+      <a href="#rsvp" class="mob-link">RSVP</a>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero">
+      <div class="hero-img-wrap">
+        <!-- Replace src with your actual envelope image path -->
+        <img
+          src="Whisk_744898ff0bde690bc7548957622d6d6cdr.png"
+          alt="Crimson envelope with gold wax seal held in white gloved hands"
+          class="hero-bg-img"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-vignette"></div>
+      <div class="hero-shimmer"></div>
+
+      <div class="hero-content">
+        <p class="hero-date-badge">17 July 2025 &nbsp;·&nbsp; Cairo</p>
+        <h1 class="hero-names">
+          Ahmed<span class="hero-ampersand">&amp;</span>Reem
+        </h1>
+        <div class="hero-gold-line"></div>
+        <p class="hero-sub">Join us in celebrating our wedding</p>
+      </div>
+
+      <a href="#invitation" class="hero-scroll" aria-label="Scroll down">
+        <div class="scroll-arrow"></div>
+      </a>
+    </section>
+
+    <!-- ═══ ORNAMENT ═══ -->
+    <div class="ornament-divider reveal">
+      <span class="ornament-icon">✦</span>
+    </div>
+
+    <!-- ═══ INVITATION CARD ═══ -->
+    <section id="invitation">
+      <p class="inv-section-label reveal">The Invitation</p>
+
+      <div class="wax-seal-wrap reveal">
+        <div class="wax-seal">
+          <span class="wax-letter">A</span>
+        </div>
+        <div class="wax-ribbon"></div>
+      </div>
+
+      <div class="inv-card-wrap reveal">
+        <!-- Replace src with your actual invitation card image path -->
+        <img
+          src="images/5.jpeg"
+          alt="Ahmed and Reem formal wedding invitation"
+          class="inv-card-img"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <!-- ═══ OUR STORY ═══ -->
+    <section id="story">
+      <div class="story-inner">
+        <div class="story-img-wrap reveal">
+          <!-- Replace src with your open envelope image path -->
+          <img
+            src="Whisk_2ca793c85f1ce24933e46f48986a270ddr.png"
+            alt="Open envelope revealing A and R monogram"
+            class="story-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="story-text reveal delay-1">
+          <span class="section-eyebrow">A Love Story</span>
+          <h2>Our Story</h2>
+          <p>
+            What began as a chance meeting blossomed into a beautiful journey of
+            shared dreams and deep devotion. Hand in hand, we have built a world
+            filled with laughter, unwavering support, and profound
+            understanding. From our very first conversation to this momentous
+            step towards our union, our love has grown deeper and stronger with
+            every passing season. We are honored to have our loved ones witness
+            the next chapter of our lives, as we dedicate ourselves to one
+            another for eternity.
+          </p>
+          <a href="#details" class="read-more">
+            <span>View Details</span>
+            <svg
+              width="16"
+              height="8"
+              viewBox="0 0 16 8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M0 4h14M10 1l4 3-4 3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DETAILS ═══ -->
+    <section id="details">
+      <div class="details-header reveal">
+        <span class="section-eyebrow" style="color: var(--gold-dk)"
+          >Wedding Details</span
+        >
+        <h2>Save the Date</h2>
+      </div>
+
+      <!-- Three detail cards -->
+      <div class="detail-cards reveal delay-1">
+        <!-- Date -->
+        <div class="detail-card">
+          <svg
+            class="detail-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <h4>Date</h4>
+          <p class="value">Friday<br />17th July, 2025</p>
+        </div>
+        <!-- Time -->
+        <div class="detail-card">
+          <svg
+            class="detail-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" />
+          </svg>
+          <h4>Time</h4>
+          <p class="value">7:00 PM</p>
+          <p class="sub-value">Doors open at 6:30 PM</p>
+        </div>
+        <!-- Dress Code -->
+        <div class="detail-card">
+          <svg
+            class="detail-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M12 2L8 6H3l1.5 4L3 14h5l4 8 4-8h5l-1.5-4L21 6h-5L12 2z" />
+          </svg>
+          <h4>Dress Code</h4>
+          <p class="value">Formal</p>
+          <p class="sub-value">Evening Attire</p>
+        </div>
+      </div>
+
+      <!-- Map + Venue -->
+      <div class="details-bottom">
+        <div class="venue-cta reveal">
+          <div>
+            <span class="section-eyebrow" style="color: var(--gold-dk)"
+              >Venue</span
+            >
+            <h3>Royal Wedding Hall</h3>
+          </div>
+          <address>
+            Police Club<br />
+            Astorya Park St., October Gardens<br />
+            6th of October City
+          </address>
+          <a
+            href="https://maps.app.goo.gl/ssVwtV6m8nzkZdHw8"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="venue-btn"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>Navigate to Venue</span>
+          </a>
+        </div>
+        <div class="reveal delay-2">
+          <iframe
+            class="map-frame"
+            src="https://maps.google.com/maps?q=Royal+Wedding+Hall+Police+Club+October+City+Egypt&output=embed&z=15"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Royal Wedding Hall location map"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ RSVP ═══ -->
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+      <span class="footer-mono">Ahmed &amp; Reem</span>
+      <p class="footer-tagline">17 · 07 · 2025</p>
+      <address>
+        Royal Wedding Hall, Police Club<br />
+        Astorya Park St., October Gardens, 6th of October City
+      </address>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <a href="#">Privacy Policy</a>
+        © 2025 Ahmed &amp; Reem
+      </div>
+    </footer>
+
+    <script>
+      /* ─────────────────────────────────────
+   GOLD PARTICLES CANVAS
+───────────────────────────────────── */
+      (function () {
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        let W,
+          H,
+          particles = [];
+
+        function resize() {
+          W = canvas.width = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+
+        // Reduce particles on mobile for performance
+        const COUNT = window.innerWidth < 768 ? 12 : 28;
+
+        for (let i = 0; i < COUNT; i++) {
+          particles.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            r: Math.random() * 1.8 + 0.4,
+            vy: -(Math.random() * 0.4 + 0.15),
+            vx: (Math.random() - 0.5) * 0.15,
+            alpha: Math.random() * 0.5 + 0.2,
+            life: Math.random(),
+          });
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          particles.forEach((p) => {
+            p.y += p.vy;
+            p.x += p.vx;
+            p.life += 0.003;
+            const alpha = p.alpha * Math.sin(p.life * Math.PI);
+            if (p.y < -10) {
+              p.y = H + 10;
+              p.x = Math.random() * W;
+              p.life = 0;
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(201,168,76,${Math.max(0, alpha)})`;
+            ctx.fill();
+          });
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+
+      /* ─────────────────────────────────────
+   NAV SCROLL
+───────────────────────────────────── */
+      const nav = document.getElementById("mainNav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 60);
+        },
+        { passive: true },
+      );
+
+      /* ─────────────────────────────────────
+   HAMBURGER
+───────────────────────────────────── */
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      hamburger.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", open);
+        document.body.style.overflow = open ? "hidden" : "";
+      });
+      document.querySelectorAll(".mob-link").forEach((l) =>
+        l.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          hamburger.classList.remove("open");
+          document.body.style.overflow = "";
+        }),
+      );
+
+      /* ─────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────── */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      /* ─────────────────────────────────────
+   RSVP FORM
+───────────────────────────────────── */
+    </script>
+  </body>
+</html>
